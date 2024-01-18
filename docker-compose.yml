@@ -1,0 +1,65 @@
+services:
+  app:
+    image : atiqulhaque/node-koa
+    restart: 'no'
+    env_file:
+      - .env
+      - .env.local
+    ports:
+      - 8085:8080
+    volumes:
+      - '.:/app'
+    command: [ 'npm', 'start' ]
+
+
+  token:
+    build:
+      context: ./token
+      dockerfile: Dockerfile
+    restart: 'no'
+    env_file:
+      - ./token/.env
+      - ./token/.env.local
+    ports:
+      - 8086:8080
+    volumes:
+      - './token:/app'
+    command: [ 'npm', 'start' ]
+
+  mongo:
+    image: mongo:4.4
+    restart: 'no'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devel
+      MONGO_INITDB_ROOT_PASSWORD: devel
+    ports:
+      - 27017
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7.0
+    restart: 'no'
+    ports:
+      - 6379
+    volumes:
+      - redis_data:/data
+
+
+  mongo-express:
+    image: mongo-express
+    restart: 'no'
+    ports:
+      - 27088:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: devel
+      ME_CONFIG_MONGODB_ADMINPASSWORD: devel
+      ME_CONFIG_MONGODB_URL: mongodb://devel:devel@mongo:27017/
+
+volumes:
+  mongo_data:
+  redis_data:
+
+networks:
+  app-network:
+    driver: bridge

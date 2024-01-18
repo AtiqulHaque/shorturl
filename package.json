@@ -1,0 +1,42 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "This service split complex word to simple multiple words",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon index.js",
+    "test": "MONGO_TEST_DB_NAME=ls-revenue-test jest",
+    "test-one": "MONGO_TEST_DB_NAME=ls-revenue-test jest -- src/tests/authentication.test.js",
+    "create_indexes": "node src/scripts/create_indexes.js",
+    "update-mapper": "node src/scripts/update_mapper.js"
+  },
+  "author": "Md Atiqul Haque <mailtoatiqul@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "axios": "^1.1.2",
+    "bcryptjs": "^2.4.3",
+    "bullmq": "^2.3.1",
+    "cors": "^2.8.5",
+    "date-fns": "^2.29.3",
+    "dayjs": "^1.10.5",
+    "joi": "^17.9.2",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
+    "koa-json": "^2.0.2",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "mongodb": "^4.10.0",
+    "newrelic": "^10.4.0",
+    "node-cron": "^3.0.2",
+    "raven": "^2.6.4",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2",
+    "winston-syslog": "^2.6.0"
+  }
+}

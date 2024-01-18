@@ -1,0 +1,13 @@
+const hostname = process.env.HOSTNAME || "NA";
+const {createLogger, format, transports} = require("winston");
+
+const logger = createLogger({
+  level: "debug",
+  format: format.json(),
+  transports: [new transports.Console()],
+});
+
+module.exports = (opts) => {
+  opts = {hostname, ...opts}
+  return logger.child(opts);
+};
