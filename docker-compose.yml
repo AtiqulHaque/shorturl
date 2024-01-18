@@ -1,14 +1,16 @@
 services:
   app:
-    image : atiqulhaque/node-koa
+    build:
+      context: ./application
+      dockerfile: Dockerfile
     restart: 'no'
     env_file:
-      - .env
-      - .env.local
+      - ./application/.env
+      - ./application/.env.local
     ports:
       - 8085:8080
     volumes:
-      - '.:/app'
+      - './application:/app'
     command: [ 'npm', 'start' ]
 
 
