@@ -1,4 +1,4 @@
-# This is a project created from `ls-ng-template-nodejs-koa-bullmq-cron` bootstrap project.
+# This is a project created from `template-nodejs-koa-bullmq-cron` bootstrap project.
 
 ### Important files
 
@@ -9,7 +9,7 @@
 
 ### Default entry-point
 
-The default entry point for `localstaffingllc/nodejs:*` images is `node /app/index.js` defined in `/etc/service/app`.
+The default entry point for `atiqulhaque/node-koa` images is `node /app/index.js` defined in `/etc/service/app`.
 `localstaffingllc/nodejs:*` images use `runit` managed init system.
 
 IMPORTANT: you DO NOT need to use PM2, systemd or similar programs when using standard node images.
