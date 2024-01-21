@@ -1,7 +1,7 @@
 const Router = require("@koa/router");
 const { getRedis } = require("../../../../utils/redis");
 const { getDatabase } = require("../../../../utils/database");
-const router = new Router({ prefix: "/" });
+const router = new Router();
 
 const BASE_URL = process.env.BASE_URL;
 
@@ -26,4 +26,11 @@ router.get("/", async (ctx, next) => {
   return await next();
 });
 
+
+router.get("/health", async (ctx, next) => {
+
+  ctx.body = "Ok";
+
+  return await next();
+});
 module.exports = router;
