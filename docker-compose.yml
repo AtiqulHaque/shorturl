@@ -47,7 +47,6 @@ services:
     volumes:
       - redis_data:/data
 
-
   mongo-express:
     image: mongo-express
     restart: 'no'

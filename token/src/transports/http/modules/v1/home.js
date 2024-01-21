@@ -1,6 +1,7 @@
 const Router = require("@koa/router");
 const AddValidator = require('./../../../../services/url/validator/add_url_validator')
 const uniqueService = require('../../../../services/unique_id/unique_id_service')
+const {postMessageToQueue} = require("../../../../utils/bullmq");
 const {
   RESPONSE_VALIDATION_ERROR,
   REDIS_COUNT,
@@ -50,9 +51,16 @@ router.post("/get/key", async (ctx, next) => {
     }
 
 
+    let key = await uniqueService.getUniqueID(validatorResponse.payload.longURL);
+
+    let res = await postMessageToQueue(UPDATE_QUEUE, UPDATE_JOB, {
+      uniqueKey : key.uniqueKey
+    },{ removeOnComplete: true, removeOnFail: true });
+
+
     ctx.body = {
       status: RESPONSE_SUCCESS,
-      payload: await uniqueService.getUniqueID(validatorResponse.payload.longURL)
+      payload: key
     };
 
 

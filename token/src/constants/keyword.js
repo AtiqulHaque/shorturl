@@ -14,8 +14,12 @@ const REDIS_KEY_STATUS          = "status";
 
 const UPDATE_QUEUE = "update_keyword";
 const UPDATE_JOB   = "update_keyword";
+
 const INSERT_QUEUE = "insert_keyword";
 const INSERT_JOB   = "insert_keyword";
+
+const STATS_QUEUE = "url_stats_queue";
+const STATS_JOB   = "stats_job";
 
 const REJECT_FOR_SPLIT = 0;
 const ACCEPT_FOR_SPLIT = 1;
@@ -41,6 +45,8 @@ module.exports = {
   REDIS_KEY_STATUS,
   RESPONSE_EMPTY,
   CACHE_EXPIRE_TIME,
-  CACHE_MEMORY_SIZE
+  CACHE_MEMORY_SIZE,
+  STATS_QUEUE,
+  STATS_JOB
 }
 

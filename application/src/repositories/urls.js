@@ -89,30 +89,7 @@ module.exports.uniqueIDExists = async (uniqueID) => {
 
 }
 
-//
-// module.exports.updateKeyword = async (keyword) => {
-//
-//   try {
-//     const database = await getDatabase();
-//
-//     let keywordData = await database.collection(KEYWORD_COLLECTION).find({keyword}).toArray();
-//
-//     if (keywordData.length !== 0) {
-//       await database.collection(KEYWORD_COLLECTION).update({_id: ObjectId(keywordData[0]._id)},
-//         {
-//           $inc: {count: 1},
-//           $set : {
-//             "updated_at" : new Date()
-//           }
-//         }
-//       );
-//     }
-//   } catch (e) {
-//     logger.info("Error found in update keyword repo: " + e)
-//   }
-//
-// };
-//
+
 
 
 

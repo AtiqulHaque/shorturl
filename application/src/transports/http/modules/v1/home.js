@@ -5,23 +5,9 @@ const {postMessageToQueue} = require("../../../../utils/bullmq");
 const urlService = require('../../../../services/url/url_service')
 const {
   RESPONSE_VALIDATION_ERROR,
-  REDIS_COUNT,
-  UPDATE_QUEUE,
-  UPDATE_JOB,
   RESPONSE_SUCCESS,
-  INSERT_JOB,
-  INSERT_QUEUE,
-  REDIS_KEY_SPLIT,
-  REDIS_KEY_MAPPING,
-  REDIS_KEY_ACTUAL_KEYWORD,
   RESPONSE_ERROR,
   TYPE_OF_UNDEFINED,
-  REJECT_FOR_SPLIT,
-  ACCEPT_FOR_SPLIT,
-  RESPONSE_EMPTY,
-  REDIS_KEY_STATUS,
-  CACHE_EXPIRE_TIME,
-  CACHE_MEMORY_SIZE
 } = require("./../../../../constants/keyword")
 
 const createLogger = require("../../../../utils/logging");
@@ -38,15 +24,14 @@ router.get("/:url", async (ctx, next) => {
 
   try {
 
-    console.log(ctx.params);
     let response = await urlService.getURL(ctx.params.url);
 
     if (typeof response.status !== TYPE_OF_UNDEFINED && response.status === RESPONSE_SUCCESS) {
 
-      console.log(response.data);
+      console.log("System Redirecting  from : " + response.data.longURL);
 
       ctx.redirect(response.data.longURL); // redirect to another page
-      return;
+      return await next();
 
     } else {
       ctx.body = {

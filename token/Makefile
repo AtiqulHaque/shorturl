@@ -2,7 +2,6 @@ LOCAL_UID	?= $(shell id -u)
 LOCAL_GID	?= $(shell id -g)
 DOCKER_USER	?= ${LOCAL_GID}:${LOCAL_UID}
 SERVICE_NAME ?= app
-SERVICE_TOKEN_NAME ?= token
 
 all: help;
 default: help;
@@ -27,10 +26,6 @@ clean: #: Bring down containers, remove all data
 
 create-index: #: Create db indexes
 	docker compose run --rm -ti app npm run create_indexes
-
-
-create-keys: #: Create db indexes
-	docker compose run --rm -ti token npm run create_keys
 
 configure: #: Fix permissions, deal with dependencies
 	docker compose pull

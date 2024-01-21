@@ -8,7 +8,7 @@
     "test": "MONGO_TEST_DB_NAME=ls-revenue-test jest",
     "test-one": "MONGO_TEST_DB_NAME=ls-revenue-test jest -- src/tests/authentication.test.js",
     "create_indexes": "node src/scripts/create_indexes.js",
-    "update-mapper": "node src/scripts/update_mapper.js"
+    "create_keys": "node src/scripts/generate_keys.js"
   },
   "author": "Md Atiqul Haque <mailtoatiqul@gmail.com>",
   "license": "ISC",

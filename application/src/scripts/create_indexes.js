@@ -5,6 +5,7 @@ const {getDatabase} = require("../utils/database")
 
 const singleIndexes = {
   urls: ["uniqueID"],
+  keys : ["key"]
 };
 
 const compoundIndexes = {};

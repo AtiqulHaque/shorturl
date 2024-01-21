@@ -1,5 +1,6 @@
 const loggerFactory = require("../../utils/logging");
-const keywordRepo = require("./../../repositories/keyword_repo")
+const usedKeyRepo = require("./../../repositories/used_key_repo")
+const keyRepo = require("./../../repositories/key_repo")
 
 
 const logger = loggerFactory({
@@ -21,7 +22,13 @@ module.exports = async (job) => {
 
 
 const handleUpdateKeyword = async (data) => {
-  await keywordRepo.updateKeyword(data.keyword, data.actual_keyword, data.split, data.count, data.mapping);
 
+  console.log("Queue received ...", data);
+
+  await usedKeyRepo.insertUsedKey(data.uniqueKey);
+
+  await keyRepo.removeKey(data.uniqueKey);
+
+  console.log("Queue process finish ...", data);
 }
 

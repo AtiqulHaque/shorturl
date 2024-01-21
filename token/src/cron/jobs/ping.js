@@ -8,8 +8,7 @@ const logger = loggerFactory({
 
 
 const SCHEDULE = {
-  minute: "30",
-  hour: 5
+  minute: "1"
 };
 
 const task = async () => {

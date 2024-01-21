@@ -1,10 +1,11 @@
 const createLogger = require("../../utils/logging");
 
-
+const {STATS_QUEUE, STATS_JOB} = require("./../../constants/keyword")
 const urlRepo = require("./../../repositories/urls");
 const {getRedis} = require("../../utils/redis");
 
 const uniqueService = require('../../../src/services/unique_id/unique_id_service')
+const {postMessageToQueue} = require("../../utils/bullmq");
 
 module.exports.addURL = async (longURL) => {
 
@@ -67,16 +68,28 @@ module.exports.getURL = async (uniqueID) => {
 
     if(result){
       console.log(key + " : cache HIT");
+
+      const parseData = JSON.parse(result);
+
+      await postMessageToQueue(STATS_QUEUE, STATS_JOB, {
+        stats : parseData
+      },{ removeOnComplete: true, removeOnFail: true });
+
       return{
         "status" : "success",
-        "data": JSON.parse(result)
+        "data": parseData
       };
     } else {
       let dbResponse = await urlRepo.getUrl(uniqueID);
 
       console.log(key + " : cache MISS");
 
+
       if(dbResponse){
+        await postMessageToQueue(STATS_QUEUE, STATS_JOB, {
+          stats : dbResponse
+        },{ removeOnComplete: true, removeOnFail: true });
+
         await redis.set(key, JSON.stringify(dbResponse));
         return{
           "status" : "success",
