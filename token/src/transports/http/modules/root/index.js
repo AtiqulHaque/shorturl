@@ -26,4 +26,12 @@ router.get("/", async (ctx, next) => {
   return await next();
 });
 
+
+router.get("/health", async (ctx, next) => {
+
+  ctx.body = "Ok";
+
+  return await next();
+});
+
 module.exports = router;

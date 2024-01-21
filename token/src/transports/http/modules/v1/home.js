@@ -4,23 +4,10 @@ const uniqueService = require('../../../../services/unique_id/unique_id_service'
 const {postMessageToQueue} = require("../../../../utils/bullmq");
 const {
   RESPONSE_VALIDATION_ERROR,
-  REDIS_COUNT,
   UPDATE_QUEUE,
   UPDATE_JOB,
   RESPONSE_SUCCESS,
-  INSERT_JOB,
-  INSERT_QUEUE,
-  REDIS_KEY_SPLIT,
-  REDIS_KEY_MAPPING,
-  REDIS_KEY_ACTUAL_KEYWORD,
-  RESPONSE_ERROR,
   TYPE_OF_UNDEFINED,
-  REJECT_FOR_SPLIT,
-  ACCEPT_FOR_SPLIT,
-  RESPONSE_EMPTY,
-  REDIS_KEY_STATUS,
-  CACHE_EXPIRE_TIME,
-  CACHE_MEMORY_SIZE
 } = require("./../../../../constants/keyword")
 
 const createLogger = require("../../../../utils/logging");
