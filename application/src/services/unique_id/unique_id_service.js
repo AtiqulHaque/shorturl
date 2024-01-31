@@ -15,6 +15,7 @@ module.exports.getUniqueID = async (longURL) => {
     const data = {
       longURL: longURL
     };
+
     const customHeaders = {
       "Content-Type": "application/json",
     }
@@ -27,6 +28,7 @@ module.exports.getUniqueID = async (longURL) => {
 
     const res = await response.json()
 
+    console.log(res);
     const {uniqueKey} = res.payload;
 
     return {

@@ -82,8 +82,6 @@ module.exports.getURL = async (uniqueID) => {
     } else {
       let dbResponse = await urlRepo.getUrl(uniqueID);
 
-      console.log(key + " : cache MISS");
-
 
       if(dbResponse){
         await postMessageToQueue(STATS_QUEUE, STATS_JOB, {
@@ -91,10 +89,12 @@ module.exports.getURL = async (uniqueID) => {
         },{ removeOnComplete: true, removeOnFail: true });
 
         await redis.set(key, JSON.stringify(dbResponse));
+
         return{
           "status" : "success",
           "data": dbResponse
         };
+
       } else {
         return{
           "status" : "error",
