@@ -9,7 +9,7 @@ const schema = Joi.object({
 
 const KeywordValidator = (params) => {
 
-  const result = schema.validate(params);
+const result = schema.validate(params);
 
   if (typeof result.error != "undefined") {
 
